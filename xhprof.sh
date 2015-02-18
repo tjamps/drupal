@@ -37,31 +37,32 @@ phpize
 make
 sudo make install
 (
-    echo '[xhprof]' | sudo tee /etc/php5/mods-available/xhprof.ini
-    echo 'extension=xhprof.so' | sudo tee -a /etc/php5/mods-available/xhprof.ini
-    echo 'xhprof.output_dir="/tmp/xhprof"' | sudo tee -a /etc/php5/mods-available/xhprof.ini
-) > /dev/null
+    echo '[xhprof]'
+    echo 'extension=xhprof.so'
+    echo 'xhprof.output_dir="/tmp/xhprof"'
+) | sudo tee /etc/php5/mods-available/xhprof.ini > /dev/null
+
 sudo service apache2 restart
 
 cd ..
 sudo mv xhprof-0.9.4 /usr/share
 
-sudo cat > "$VHOST_FILE" <<EOF
-<VirtualHost *:80>
-    ServerName $HOST_NAME
-    DocumentRoot /usr/share/xhprof-0.9.4/xhprof_html
-    <Directory /usr/share/xhprof-0.9.4/xhprof_html>
-        Options -Indexes
-        AllowOverride all
-        Require all granted
-    </Directory>
-    
-    ErrorLog \${APACHE_LOG_DIR}/$HOST_NAME.error.log
-    
-    CustomLog \${APACHE_LOG_DIR}/$HOST_NAME.access.log combined
-</VirtualHost>
-
-EOF
+(
+    echo "<VirtualHost *:80>"
+    echo "    ServerName $HOST_NAME"
+    echo "    DocumentRoot /usr/share/xhprof-0.9.4/xhprof_html"
+    echo "    <Directory /usr/share/xhprof-0.9.4/xhprof_html>"
+    echo "        Options -Indexes"
+    echo "        AllowOverride all"
+    echo "        Require all granted"
+    echo "    </Directory>"
+    echo ""    
+    echo "    ErrorLog \${APACHE_LOG_DIR}/$HOST_NAME.error.log"
+    echo ""    
+    echo "    CustomLog \${APACHE_LOG_DIR}/$HOST_NAME.access.log combined"
+    echo "</VirtualHost>"
+    echo ""
+) | sudo tee "$VHOST_FILE" > /dev/null
 
 sudo a2ensite $HOST_NAME
 sudo service apache2 reload
