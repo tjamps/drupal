@@ -80,8 +80,8 @@ if php -m | grep -qi xhprof; then
     echo 'Success !'
     echo 'Go to Admin > Configuration > Devel Settings and check the "Enable profiling of all page views and drush requests."'
     echo 'Use the following values in the form : '
-    echo '  xhprof directory: /usr/share/xhprof-0.9.4'
-    echo "  XHProf URL  : $HOST_NAME"
+    echo '   - xhprof directory: /usr/share/xhprof-0.9.4'
+    echo "   - XHProf URL  : $HOST_NAME"
     echo
     echo -e "You also need to add this line to your /etc/hosts : $IP\t$HOST_NAME"
 else
