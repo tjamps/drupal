@@ -43,6 +43,7 @@ sudo make install
     echo 'xhprof.output_dir="/tmp/xhprof"'
 ) | sudo tee /etc/php5/mods-available/xhprof.ini > /dev/null
 
+sudo php5enmod xhprof
 sudo service apache2 restart
 
 cd
@@ -66,7 +67,7 @@ sudo mv xhprof-0.9.4 /usr/share
 ) | sudo tee "$VHOST_FILE" > /dev/null
 
 sudo a2ensite $HOST_NAME
-sudo service apache2 reload
+sudo service apache2 restart
 
 
 echo # For optics ;)
