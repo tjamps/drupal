@@ -83,7 +83,7 @@ if php -m | grep -qi xhprof; then
     echo '  xhprof directory: /usr/share/xhprof-0.9.4'
     echo "  XHProf URL  : $HOST_NAME"
     echo
-    echo "You also need to add this line to your /etc/hosts : $IP\t$HOST_NAME"
+    echo -e "You also need to add this line to your /etc/hosts : $IP\t$HOST_NAME"
 else
     echo 'Something went wrong :s...'
 fi
