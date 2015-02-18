@@ -13,7 +13,7 @@ Tested on : Ubuntu 14.04.1 LTS
 xhprof.sh
 ---------
 
-Automate the installation of (XHProf)[http://pecl.php.net/package/xhprof] to use on a Drupal development machine.
+Automate the installation of [XHProf](http://pecl.php.net/package/xhprof) to use on a Drupal development machine.
 
 Tested on : Ubuntu 14.04.1 LTS
 
