@@ -19,8 +19,10 @@ if [ -f "$VHOST_FILE" ]; then
     exit 1
 fi
 
+
+echo # For optics ;)
 echo "The installation will now begin. You will be asked your password because sudo is used."
-echo "Press Enter to continue..."
+echo -n "Press Enter to continue..."
 read -r -n 1 -s
 
 cd
@@ -41,9 +43,10 @@ sudo make install
 ) > /dev/null
 sudo service apache2 restart
 
+cd ..
 sudo mv xhprof-0.9.4 /usr/share
 
-cat > "$VHOST_FILE" <<EOM
+sudo cat > "$VHOST_FILE" <<EOF
 <VirtualHost *:80>
     ServerName $HOST_NAME
     DocumentRoot /usr/share/xhprof-0.9.4/xhprof_html
@@ -58,7 +61,15 @@ cat > "$VHOST_FILE" <<EOM
     CustomLog \${APACHE_LOG_DIR}/$HOST_NAME.access.log combined
 </VirtualHost>
 
-EOM
+EOF
+
+sudo a2ensite $HOST_NAME
+sudo service apache2 reload
+
+
+echo # For optics ;)
+echo # For optics ;)
+echo # For optics ;)
 
 IP=$(ip -4 -o addr show eth0 | awk '{ print $4; }' | cut -d/ -f1)
 
