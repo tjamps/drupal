@@ -24,6 +24,7 @@ echo # For optics ;)
 echo "The installation will now begin. You will be asked your password because sudo is used."
 echo -n "Press Enter to continue..."
 read -r -n 1 -s
+echo # For optics ;)
 
 cd
 
@@ -44,7 +45,7 @@ sudo make install
 
 sudo service apache2 restart
 
-cd ..
+cd
 sudo mv xhprof-0.9.4 /usr/share
 
 (
