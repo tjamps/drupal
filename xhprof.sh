@@ -40,7 +40,7 @@ sudo make install
 (
     echo '[xhprof]'
     echo 'extension=xhprof.so'
-    echo 'xhprof.output_dir="/tmp/xhprof"'
+    echo 'xhprof.output_dir="/tmp"'
 ) | sudo tee /etc/php5/mods-available/xhprof.ini > /dev/null
 
 sudo php5enmod xhprof
